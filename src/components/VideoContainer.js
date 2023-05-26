@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
+import AdVideoCard from "./AdVideoCard";
 import { YOUTUBE_VIDEOS_API } from "../utils/contants";
 import { Link } from "react-router-dom";
 
@@ -19,8 +20,10 @@ const VideoContainer = () => {
 
   return (
     <div className="flex flex-wrap">
+       {/* Implemented Higher order component - for eg. Ad */}
+      {videos[0] && <AdVideoCard info={videos[0]}/>}
       {videos.map((video) => (
-        <Link to={"/watch?v=" + video.id}>
+        <Link key={video.id} to={"/watch?v=" + video.id}>
           <VideoCard key={video.id} info={video} />
         </Link>
       ))}
